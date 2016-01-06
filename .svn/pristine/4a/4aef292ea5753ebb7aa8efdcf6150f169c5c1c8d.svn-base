@@ -1,0 +1,85 @@
+
+
+h3 {
+color: #aaaaaa;
+  height: 5px;
+  width: 120px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+  left: 45%;
+  margin-top: -20px;
+}
+
+h3::before {
+  content: "";
+  display: none;
+  position: absolute;
+  z-index: -1;
+  margin-top : 10px;	
+  left: 29px;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  border: 1.3px solid ;
+  box-sizing: border-box;
+}
+
+em {
+  font-family: 'Josefin Sans', sans-serif;
+  color: currentColor;
+  font-size: 20px;
+  position: relative;
+  font-style: normal;
+  width: 20px;
+  text-align: center;
+  margin-top: 70px;
+}
+
+em.planet {
+  -webkit-animation: planet-rotate 4s linear infinite;
+  animation: planet-rotate 4s linear infinite;
+  position: relative;
+}
+
+em.planet::before {
+  content: "";
+  position: absolute;
+ 
+  left: 3.5px;
+  z-index: -1;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+}
+
+em.planet.left {
+  -webkit-transform-origin: 40px 5px;
+  -ms-transform-origin: 40px 5px;
+      transform-origin: 40px 5px;
+}
+
+em.planet.right {
+  -webkit-transform-origin: -20px 5px;
+  -ms-transform-origin: -20px 5px;
+      transform-origin: -20px 5px;
+}
+
+@-webkit-keyframes planet-rotate {
+  to {
+    -webkit-transform: rotate(1turn);
+  }
+}
+
+@keyframes planet-rotate {
+  to {
+    -webkit-transform: rotate(1turn);
+            transform: rotate(1turn);
+  }
+}

@@ -1,0 +1,49 @@
+.menu{
+	margin-left: 1210px;
+	
+}
+
+ul {
+    font-family: Arial, Verdana;
+    font-size: px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+   
+}
+ul li {
+	
+    display: block;
+    position: relative;
+    float: left;
+    
+}
+li ul {
+    display: none;
+}
+ul li a {
+    display: block;
+    text-decoration: none;
+    color: #ffffff;
+    padding: 15px 15px 5px 15px;
+    background: #ff8040;
+    margin-left: 1px;
+    white-space: nowrap;
+}
+
+li:hover ul {
+    display: block;
+    position: absolute;
+    margin-left:-40px;
+    text-align: left;
+   
+}
+li:hover li {
+    float: none;
+    font-size: 10px;
+    font-family: arial,sans-serif;
+}
+
+li:hover li a:hover {
+    background: #1e7c9a;
+}

@@ -1,0 +1,68 @@
+package com.suptrip.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.suptrip.dao.DaoFactory;
+import com.suptrip.model.Campus;
+import com.suptrip.model.User;
+
+/**
+ * Servlet implementation class ModifUser
+ */
+@WebServlet("/auth/ModifUser")
+public class ModifUser extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ModifUser() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String id 		= request.getParameter("id_user");
+		String name 	= request.getParameter("name");
+		String email 	= request.getParameter("email_user");
+		String campus 	= request.getParameter("campusId");
+		
+		Long id_user =  Long.parseLong(id);
+		Long campusId = Long.parseLong(campus);
+		
+		User u =  DaoFactory.getDaoFactory().getUserDao().findUserById(id_user);
+		Campus c = DaoFactory.getDaoFactory().getCampusDao().findCampusById(campusId);
+		
+		u.setEmail(email);
+		u.setCampus(c);
+		u.setName(name);
+		
+		DaoFactory.getDaoFactory().getUserDao().updateUser(u);
+		
+		request.getSession().setAttribute("user", u);
+		
+		// Selection de la vue d�sir�e et envoi du forward.
+		RequestDispatcher rd = request.getRequestDispatcher("/front/pagePersonnel.jsp");
+		rd.forward(request, response);
+		
+	}
+
+}
